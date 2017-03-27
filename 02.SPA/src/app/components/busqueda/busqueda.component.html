@@ -1,5 +1,13 @@
-<h1>Héroes <small>de Marvel<small>&copy;</small> y DC<small>&copy;</small></small></h1>
+<h1>Buscando: <i>{{termino}}</i></h1>
 <hr>
+
+<div class="row" *ngIf="heroes.length==0">
+  <div class="col-md-12">
+    <div class="alert alert-info">
+      No se encontró ningún héroe con el término: <i><b>{{termino}}</b></i>
+    </div>
+  </div>
+</div>
 
 <div class="card-columns">
   <div class="card animated fadeIn fast" *ngFor="let heroe of heroes; let i=index">
