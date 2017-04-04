@@ -10,12 +10,21 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
+//Services
+import { SpotifyService } from './services/spotify.service';
+import { SinfotoPipe } from './pipes/sinfoto.pipe';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { ArtistaComponent } from './components/artista/artista.component';
+
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         SearchComponent,
-        NavbarComponent
+        NavbarComponent,
+        SinfotoPipe,
+        DomseguroPipe,
+        ArtistaComponent
     ],
     imports: [
         BrowserModule,
@@ -23,7 +32,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
         HttpModule,
         APP_ROUTING
     ],
-    providers: [],
+    providers: [
+        SpotifyService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
