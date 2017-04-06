@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{lista.nombre}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-label floating>Nombre de la Lista</ion-label>
+        <ion-input type="text" [(ngModel)]="lista.nombre"></ion-input>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of lista.items">
+          <ion-label [class.tachado]="item.esListaItemCompletado" color="dark">{{item.nombre}}</ion-label>
+          <ion-checkbox color="dark" (click)="actualizar(item)" [checked]="item.esListaItemCompletado">{{item.nombre}}</ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button class="button-block" color="danger" (click)="borrarLista(lista.nombre)">
+    Borrar Lista
+  </button>
+</ion-content>

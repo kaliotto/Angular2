@@ -5,17 +5,32 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Tareas Pendientes!!</h1>
+  <ion-grid *ngIf="(_tareasService.listas | completas: false).length==0">
+    <ion-row>
+      <ion-col class="text-center caja-vacia">
+        <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
+        <p>¡Ninguna lista pendiente!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-card *ngFor="let lista of _tareasService.listas">
-    <ion-card-header>
-      {{lista.nombre}}
-    </ion-card-header>
-    <ion-card-content>
-      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-    </ion-card-content>
+  <ion-card *ngFor="let lista of _tareasService.listas | completas: false; let i=index;">
+    <ion-item color="dark" (click)="verDetalle(lista, i)">
+      <h2 ion-text color="light">{{lista.nombre}}</h2>
+      <ion-note item-right>
+        {{lista.items.length}} elementos
+      </ion-note>
+    </ion-item>
+    <ion-list>
+      <ion-item *ngFor="let item of lista.items | slice:0:2">
+        <ion-label [class.tachado]="item.esListaItemCompletado" color="dark">{{item.nombre}}</ion-label>
+        <ion-checkbox color="dark" (click)="actualizar(lista, item)" [checked]="item.esListaItemCompletado">{{item.nombre}}</ion-checkbox>
+      </ion-item>
+      <ion-item class="text-center" *ngIf="lista.items.length>2">
+        <ion-icon color="dark" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+      </ion-item>
+    </ion-list>
   </ion-card>
-  <!-- <li *ngFor="let lista of _tareasService.listas"> -->
 
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="irAgregar()">
