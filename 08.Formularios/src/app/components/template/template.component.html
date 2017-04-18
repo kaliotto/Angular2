@@ -1,0 +1,116 @@
+<h4>Formularios <small>template</small></h4>
+<hr>
+
+<form (ngSubmit)="guardar(forma)" #forma="ngForm">
+  <div>
+    <div class="form-group row" [ngClass]="{'has-danger': nombre.touched && (nombre.errors?.required || nombre.errors?.minlength)}">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Nombre"
+               [(ngModel)]="usuario.nombre"
+               name="nombre"
+               required
+               minlength="3"
+               #nombre="ngModel">
+         <div *ngIf="nombre.touched && nombre.errors?.required"
+              class="form-control-feedback">
+           Este campo es requerido.
+         </div>
+         <div *ngIf="nombre.touched && nombre.errors?.minlength"
+              class="form-control-feedback">
+           El nombre ha de tener al menos {{nombre.errors.minlength.requiredLength}} caracteres.
+         </div>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': apellido.touched && apellido.errors?.required}">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Apellido"
+               name="apellido"
+               [(ngModel)]="usuario.apellido"
+               required
+               #apellido="ngModel">
+         <div *ngIf="apellido.touched && apellido.errors?.required"
+              class="form-control-feedback">
+           Este campo es requerido.
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row" [ngClass]="{'has-danger': correo.touched && (correo.errors?.required || correo.errors?.pattern)}">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             type="email"
+             placeholder="Correo electrónico"
+             name="correo"
+             [(ngModel)]="usuario.correo"
+             required
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             #correo="ngModel">
+       <div *ngIf="correo.touched && correo.errors?.required"
+            class="form-control-feedback">
+         Este campo es requerido.
+       </div>
+       <div *ngIf="correo.touched && correo.errors?.pattern"
+            class="form-control-feedback">
+         El correo introducido no es válido.
+       </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">País</label>
+    <div class="input-group col-md-8">
+      <select [(ngModel)]="usuario.pais"
+        class="form-control" name="pais">
+        <option value="">Seleccione un país</option>
+        <option [value]="pais.codigo" *ngFor="let pais of paises">{{pais.pais}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Sexo</label>
+    <div class="input-group col-md-8">
+      <label class="custom-control custom-radio">
+        <input value="hombre" name="sexo" [(ngModel)]="usuario.sexo" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Hombre</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input value="mujer" name="sexo" [(ngModel)]="usuario.sexo" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Mujer</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Acepta</label>
+    <div class="input-group col-md-8">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="acepta" class="custom-control-input" [(ngModel)]="usuario.acepta">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Acepta los términos y condiciones de uso</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button [disabled]="forma.invalid"
+        type="submit" class="btn btn-primary" >
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
