@@ -1,3 +1,43 @@
-<p>
-  data works!
-</p>
+<h4>Formularios <small>data</small></h4>
+<hr>
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+
+  <div class="form-group row" [ngClass]="{'has-danger': formulario.controls.nombre.invalid && formulario.controls.nombre.touched}">
+    <label class="col-2 col-form-label">Nombre</label>
+    <div class="col-8">
+      <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+      <div *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched" class="form-control-feedback">
+        El nombre es un campo requerido.
+      </div>
+      <div *ngIf="formulario.controls.nombre.errors?.minlength && formulario.controls.nombre.touched" class="form-control-feedback">
+        El nombre debe contener al menos {{formulario.controls.nombre.errors.minlength.requiredLength}} caracteres.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Apellido</label>
+    <div class="col-8">
+      <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+  {{formulario.valid}}
+
+</form>
