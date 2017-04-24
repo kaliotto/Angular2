@@ -1,0 +1,30 @@
+<h3>{{seccion}}</h3>
+<hr>
+<div class="row" *ngIf="!loading">
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-12 pic-grande" [ngStyle]="{'background-image': 'url('+peliculas[0].img+')'}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[1].img+')'}">
+      </div>
+      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[2].img+')'}">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[3].img+')'}">
+      </div>
+      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[4].img+')'}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 pic-grande" [ngStyle]="{'background-image': 'url('+peliculas[5].img+')'}">
+      </div>
+    </div>
+  </div>
+
+</div>
