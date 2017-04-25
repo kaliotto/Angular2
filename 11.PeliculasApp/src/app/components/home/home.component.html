@@ -1,24 +1,24 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">Peliculas App</h1>
+    <h1 class="display-3">Películas App</h1>
     <p class="lead">Bienvenido a un mundo de película al alcance de tu mano.</p>
   </div>
 </div>
 
 <div class="container">
-  <div class="">
-    <h3>Películas en Cartelera</h3>
-    <hr>
+  <div class="seccion" *ngIf="cartelera">
+    <app-galeria [peliculas]="cartelera"
+                  seccion="Próximos Estrenos"></app-galeria>
   </div>
 
-  <div *ngIf="!loading">
+  <div class="seccion" *ngIf="populares">
     <app-galeria [peliculas]="populares"
                   seccion="Películas Populares"></app-galeria>
   </div>
 
 
-  <div class="">
-    <h3>Películas Populares entre los más Pequeños</h3>
-    <hr>
+  <div class="seccion" *ngIf="populares_ninos">
+    <app-galeria [peliculas]="populares_ninos"
+                  seccion="Películas Populares entre Niños"></app-galeria>
   </div>
 </div>

@@ -1,28 +1,40 @@
 <h3>{{seccion}}</h3>
 <hr>
-<div class="row" *ngIf="!loading">
+<div class="row">
   <div class="col-sm-6">
     <div class="row">
-      <div class="col-sm-12 pic-grande" [ngStyle]="{'background-image': 'url('+peliculas[0].img+')'}">
+      <div class="col-sm-12 pic-grande puntero" (click)="abrirPelicula(peliculas[0].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[0].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[0].titulo}}</h5>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[1].img+')'}">
+      <div class="col-sm-6 pic-pequena puntero" (click)="abrirPelicula(peliculas[1].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[1].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[1].titulo}}</h5>
       </div>
-      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[2].img+')'}">
+      <div class="col-sm-6 pic-pequena puntero" (click)="abrirPelicula(peliculas[2].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[2].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[2].titulo}}</h5>
       </div>
     </div>
   </div>
 
   <div class="col-sm-6">
     <div class="row">
-      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[3].img+')'}">
+      <div class="col-sm-6 pic-pequena puntero" (click)="abrirPelicula(peliculas[3].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[3].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[3].titulo}}</h5>
       </div>
-      <div class="col-sm-6 pic-pequena" [ngStyle]="{'background-image': 'url('+peliculas[4].img+')'}">
+      <div class="col-sm-6 pic-pequena puntero" (click)="abrirPelicula(peliculas[4].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[4].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[4].titulo}}</h5>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 pic-grande" [ngStyle]="{'background-image': 'url('+peliculas[5].img+')'}">
+      <div class="col-sm-12 pic-grande puntero" (click)="abrirPelicula(peliculas[5].id)"
+      [ngStyle]="{'background-image': 'url('+peliculas[5].img+')'}">
+        <h5 class="titulo_en_im">{{peliculas[5].titulo}}</h5>
       </div>
     </div>
   </div>

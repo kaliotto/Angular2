@@ -1,3 +1,23 @@
-<p>
-  detalle works!
-</p>
+<div class="container main-container" *ngIf="pelicula">
+  <h3>{{pelicula.titulo}}</h3>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4">
+      <img class="pic-detalle" [src]="pelicula.img" [alt]="pelicula.title">
+    </div>
+    <div class="col-md-8">
+      <h5>Sinopsis</h5>
+      <hr>
+      <p>{{pelicula.sinopsis}}</p>
+      <br>
+      <div *ngIf="pelicula.frase">
+        <h5>Frase Célebre</h5>
+        <p>{{pelicula.frase}}</p>
+        <br>
+      </div>
+      <p>Popularidad: <span class="badge badge-pill badge-primary">{{pelicula.popularidad | number:'1.2-2'}}%</span></p>
+      <p>Voto Promedio: <span class="badge badge-pill badge-primary">{{pelicula.voto_avg}}</span></p>
+    </div>
+  </div>
+</div>
