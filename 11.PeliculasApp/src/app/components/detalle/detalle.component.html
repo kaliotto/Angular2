@@ -4,7 +4,7 @@
 
   <div class="row">
     <div class="col-md-4">
-      <img class="pic-detalle" [src]="pelicula.img" [alt]="pelicula.title">
+      <img class="img-fluid img-thumbnail" [src]="pelicula.img" [alt]="pelicula.title">
     </div>
     <div class="col-md-8">
       <h5>Sinopsis</h5>
@@ -18,8 +18,8 @@
       </div>
       <p>Popularidad: <span class="badge badge-pill badge-primary">{{pelicula.popularidad | number:'1.2-2'}}%</span></p>
       <p>Voto Promedio: <span class="badge badge-pill badge-primary">{{pelicula.voto_avg}}</span></p>
+      <br>
+      <button class="btn btn-outline-danger seccion" (click)="volver()" type="button" name="button">Volver</button>
     </div>
-    <br>
-    <button class="btn btn-outline-danger" (click)="volver()" type="button" name="button">Volver</button>
   </div>
 </div>

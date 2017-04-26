@@ -17,7 +17,7 @@ export class GaleriaComponent implements OnInit {
   }
 
   abrirPelicula(id: string) {
-    this._router.navigate(['detalle', id]);
+    this._router.navigate(['detalle', id, 'home']);
   }
 
 }

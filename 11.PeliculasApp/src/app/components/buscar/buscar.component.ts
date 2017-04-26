@@ -28,7 +28,7 @@ export class BuscarComponent implements OnInit {
   }
 
   abrirPelicula(id: string) {
-    this._router.navigate(['detalle', id]);
+    this._router.navigate(['detalle', id, 'buscar', this.termino]);
   }
 
   private mapearPeliculas(data: any[]): Pelicula[] {
