@@ -68,15 +68,24 @@ export class PeliculasService {
       this.CALLBACK_API;
 
     return this._jsonp.get(PELICULA_PETICION).map(data => {
-      console.log(data.json());
       return data.json();
+    });
+  }
+
+  buscarPeliculas(termino: string) {
+    const BUSCAR_PELICULAS_PETICION: string = this.URL_API +
+      `/search/movie?&query=${termino}&page=1&include_adult=false` +
+      this.KEY_API +
+      this.LANG_ES +
+      this.CALLBACK_API;
+
+    return this._jsonp.get(BUSCAR_PELICULAS_PETICION).map(data => {
+      return data.json().results;
     });
   }
 
   public ObtenerURLBack_Poster(pelicula): string {
     let url = "https://image.tmdb.org/t/p/w500";
-    console.log("Pelicula");
-    console.log(pelicula);
     if (pelicula.backdrop_path) {
       return url + pelicula.backdrop_path;
     } else if (pelicula.poster_path) {
@@ -88,8 +97,6 @@ export class PeliculasService {
 
   public ObtenerURLPoster_Back(pelicula): string {
     let url = "https://image.tmdb.org/t/p/w500";
-    console.log("Pelicula");
-    console.log(pelicula);
     if (pelicula.poster_path) {
       return url + pelicula.poster_path;
     } else if (pelicula.backdrop_path) {

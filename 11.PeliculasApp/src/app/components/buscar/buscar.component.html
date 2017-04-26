@@ -1,11 +1,19 @@
 <div class="container main-container">
   <div class="row">
     <div class="col-md-12">
-      <label>Buscar:</label>
+      <label class="form-control-label">Buscar:</label>
+      <input type="text" placeholder="Buscar película..." name="termino" class="form-control" [(ngModel)]="termino" (keyup)="buscarPeliculas()">
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <input type="text" name="">
+  </div>
+
+  <div class="main-container">
+    <div class="card-columns" *ngIf="peliculas">
+      <div class="card puntero" *ngFor="let pelicula of peliculas" (click)="abrirPelicula(pelicula.id)">
+        <img class="card-img-top img-fluid" [src]="pelicula.img" [alt]="pelicula.titulo">
+        <div class="card-block">
+          <h4 class="card-title">{{pelicula.titulo}}</h4>
+          <p class="card-text">{{pelicula.sinopsis | slice:0:75}}...</p>
+        </div>
       </div>
     </div>
   </div>
