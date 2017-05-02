@@ -1,0 +1,28 @@
+<div class="container main-container">
+  <h1>Canal de Alvarito</h1>
+  <hr>
+  <app-canal playListId="UU-wZqFr9B3gdbToNtdKWkrA"></app-canal>
+
+  <h1>Canal de Surgical Goblin</h1>
+  <hr>
+  <app-canal playListId="UUFaV5im11vfhDs1BaaF9a0A"></app-canal>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" *ngIf="_YTServ.videoSel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{_YTServ.videoSel.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="500" [src]="_YTServ.videoSel.resourceId.videoId | dominioSeguro" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarVideo()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

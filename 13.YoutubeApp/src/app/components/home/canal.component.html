@@ -1,0 +1,15 @@
+<div class="card-group" *ngIf="canal">
+  <div class="card col-md-4" (click)="verVideo(video)"
+    *ngFor="let video of canal.videos">
+    <img class="card-img-top" [src]="video.thumbnails.high.url" [alt]="video.title">
+    <div class="card-block">
+      <h4 class="card-title">{{video.title}}</h4>
+      <p class="card-text">{{video.description | slice:0:75}}...</p>
+    </div>
+  </div>
+</div>
+
+<br>
+<button type="button" class="btn btn-outline-primary btn-block"
+  *ngIf="canal.videos.length>0"
+  (click)="getVideos(canal.nextPageToken)">Cargar más...</button>
