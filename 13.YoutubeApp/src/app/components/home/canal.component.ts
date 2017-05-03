@@ -10,21 +10,29 @@ declare var $: any;
   styles: []
 })
 export class CanalComponent implements OnInit {
-  @Input() playListId;
+  @Input() channelId;
+  playListId: string;
   canal: Canal;
   videoSel: any;
 
   constructor(private _YTServ: YoutubeService) {
     //this.canal.videos = [];
-
     this.canal = new Canal();
 
   }
   ngOnInit() {
-    this.getVideos(null);
+    this._YTServ.getUploadsIdFromChannel(this.channelId).subscribe(playListId => {
+      // console.log("channelId: " + this.channelId);
+      // console.log("PlaylistId: " + playListId);
+      this.playListId = playListId;
+      //console.log("UPLOADS: " + this.playListId);
+    });
+    //this.getVideos(null);
+    setTimeout(() => { this.getVideos(null); }, 300);
   }
+
   getVideos(nextPageToken: string) {
-    // console.log("Hola:" + this.playListId);
+    console.log("getVideos: " + this.playListId);
     // console.log("Hola:");
     if (nextPageToken) {
       this._YTServ.getVideos(this.playListId, nextPageToken).subscribe(canal => {

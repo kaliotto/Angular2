@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Canal} from '../../classes/canal';
 import {YoutubeService} from '../../services/youtube.service';
 
 declare var $: any;
@@ -10,14 +11,19 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
-  paginaAlvarito: any = {
-    nextPageToken: "",
-    videos: []
-  };
-  // videoSel: any;
-
+  canales: string[];
   constructor(private _YTServ: YoutubeService) {
-    // this.getVideos(null);
+    if (localStorage.getItem('canales')) {
+      this.canales = JSON.parse(localStorage.getItem('canales'));
+      // this.canales = [];
+    } else {
+      this.canales = [];
+    }
+  }
+
+  cerrarVideo(video: any) {
+    this._YTServ.desSeleccionarVideo();
+    $('#modalVideo').modal('hide');
   }
 
   ngOnInit() { }
@@ -42,9 +48,5 @@ export class HomeComponent implements OnInit {
   //   $('#modalVideo').modal();
   // }
 
-  cerrarVideo(video: any) {
-    this._YTServ.desSeleccionarVideo();
-    $('#modalVideo').modal('hide');
-  }
 
 }

@@ -1,18 +1,23 @@
 <div class="container main-container">
-  <h1>Canal de Alvarito</h1>
-  <hr>
-  <app-canal playListId="UU-wZqFr9B3gdbToNtdKWkrA"></app-canal>
 
-  <h1>Canal de Surgical Goblin</h1>
-  <hr>
-  <app-canal playListId="UUFaV5im11vfhDs1BaaF9a0A"></app-canal>
+  <div *ngIf="canales.length>0">
+    <div *ngFor="let canal of canales">
+      <app-canal [channelId]="canal"></app-canal>
+    </div>
+  </div>
+
+  <div *ngIf="canales.length==0">
+    <div class="alert alert-info" role="alert">
+      Todavía no has añadido ningún canal.
+    </div>
+  </div>
 </div>
 
 
 
 <!-- Modal -->
 <div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content" *ngIf="_YTServ.videoSel">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{_YTServ.videoSel.title}}</h5>

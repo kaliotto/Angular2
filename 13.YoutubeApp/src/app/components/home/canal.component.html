@@ -1,15 +1,80 @@
-<div class="card-group" *ngIf="canal">
-  <div class="card col-md-4" (click)="verVideo(video)"
+<div class="canal" *ngIf="canal" style="border: 1px solid #d9534f; margin-bottom: 30px; padding: 15px; border-radius: 5px;">
+
+  <div class="jumbotron text-center" style="margin-bottom: 5px;">
+    <h1>{{canal.nombre}}</h1>
+  </div>
+
+  <div class="list-group" *ngIf="canal.videos.length>0">
+    <a href="#" id="{{video.resourceId.videoId}}" *ngFor="let video of canal.videos"
+     class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img img-thumbnail" (click)="verVideo(video)" [src]="video.thumbnails.high.url" [alt]="video.title">
+        </div>
+        <div class="col-md-6">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <h5>{{video.title}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>{{video.description | slice:0:450}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Marcar como visto:</label>
+              <input class="checkbox-inline" type="checkbox" checked>
+              <!-- <div class="form-group">
+                <input type="checkbox" name="fancy-checkbox-danger" id="fancy-checkbox-danger" autocomplete="off" />
+                <div class="btn-group">
+                  <label for="fancy-checkbox-danger" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <span> </span>
+                  </label>
+                  <label for="fancy-checkbox-danger" class="btn btn-default active">
+                    Marcar como visto
+                  </label>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div *ngIf="canal.videos && canal.videos.length==0">
+    <div class="alert alert-info" role="alert">
+      ¡Has visto todos los vídeos de este canal!
+    </div>
+  </div>
+
+  <!-- <div class="list-group">
+  <a href="#" (click)="verVideo(video)" class="list-group-item list-group-item-action flex-column align-items-start"
     *ngFor="let video of canal.videos">
-    <img class="card-img-top" [src]="video.thumbnails.high.url" [alt]="video.title">
-    <div class="card-block">
+    <img class="card-img img-responsive" [src]="video.thumbnails.high.url" [alt]="video.title">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{video.title}}</h5>
+    </div>
+    <p class="mb-1">{{video.description | slice:0:75}}...</p>
+  </a>
+</div> -->
+
+  <!-- <div class="card-group">
+  <div class="card col-md-4" (click)="verVideo(video)" style="border: 0px; padding: 5px;"
+    *ngFor="let video of canal.videos">
+    <img class="card-img img-responsive" [src]="video.thumbnails.high.url" [alt]="video.title">
+    <div class="">
       <h4 class="card-title">{{video.title}}</h4>
       <p class="card-text">{{video.description | slice:0:75}}...</p>
     </div>
   </div>
-</div>
+</div> -->
 
-<br>
-<button type="button" class="btn btn-outline-primary btn-block"
-  *ngIf="canal.videos.length>0"
-  (click)="getVideos(canal.nextPageToken)">Cargar más...</button>
+  <br>
+  <button type="button" class="btn btn-outline-danger btn-block" *ngIf="canal.videos.length>0" (click)="getVideos(canal.nextPageToken)">Cargar más...</button>
+</div>
+<hr>
