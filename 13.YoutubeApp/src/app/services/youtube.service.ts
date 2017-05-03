@@ -14,13 +14,22 @@ export class YoutubeService {
   public videoSel: any;
 
   constructor(private _http: Http) {
-    this.paramsPL.set('maxResults', '6');
     this.paramsPL.set('key', this.APIKEY);
-    this.paramsPL.set('part', 'snippet');
+  }
+
+  getUploadsIdFromChannel(id: string) {
+    this.paramsPL.set('part', 'contentDetails');
+    this.paramsPL.set('id', id);
+    return this._http.get(this.YOUTUBE_URL, { search: this.paramsPL })
+      .map(res => {
+        return res.json().items[0].contentDetails.relatedPlaylists.uploads;
+      });
   }
 
   getVideos(playListId: string, nextPageToken?: string) {
+    this.paramsPL.set('part', 'snippet');
     this.paramsPL.set('playlistId', playListId); //Uploads de Alvarito
+    this.paramsPL.set('maxResults', '6');
     if (nextPageToken) {
       this.paramsPL.set('pageToken', nextPageToken);
     }
