@@ -26,9 +26,10 @@ export class CanalComponent implements OnInit {
       // console.log("PlaylistId: " + playListId);
       this.playListId = playListId;
       //console.log("UPLOADS: " + this.playListId);
+      this.getVideos(null);
     });
     //this.getVideos(null);
-    setTimeout(() => { this.getVideos(null); }, 300);
+    // setTimeout(() => { this.getVideos(null); }, 300);
   }
 
   getVideos(nextPageToken: string) {
