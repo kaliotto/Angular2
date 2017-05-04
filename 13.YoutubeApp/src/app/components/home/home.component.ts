@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import {Canal} from '../../classes/canal';
 import {YoutubeService} from '../../services/youtube.service';
 
@@ -9,10 +9,14 @@ declare var $: any;
   templateUrl: './home.component.html',
   styles: []
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
 
   canales: string[];
   constructor(private _YTServ: YoutubeService) {
+    this.cargarCanales();
+  }
+
+  cargarCanales() {
     if (localStorage.getItem('canales')) {
       this.canales = JSON.parse(localStorage.getItem('canales'));
       // this.canales = [];
@@ -24,6 +28,10 @@ export class HomeComponent implements OnInit {
   cerrarVideo(video: any) {
     this._YTServ.desSeleccionarVideo();
     $('#modalVideo').modal('hide');
+  }
+
+  ngOnChanges() {
+    this.cargarCanales();
   }
 
   ngOnInit() { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {YoutubeService} from '../../services/youtube.service';
+import {HomeComponent} from '../home/home.component';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import {YoutubeService} from '../../services/youtube.service';
 })
 export class NavbarComponent implements OnInit {
   nuevoCanal: string;
-  constructor(private _YTServ: YoutubeService) { }
+  constructor(private _YTServ: YoutubeService, private _home: HomeComponent) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,8 @@ export class NavbarComponent implements OnInit {
     }
 
     canales.push(this.nuevoCanal);
+    //this._home.canales.push(this.nuevoCanal);
     this._YTServ.guardarCanales(canales);
+    this._home.cargarCanales();
   }
 }

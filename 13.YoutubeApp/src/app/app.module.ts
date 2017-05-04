@@ -26,7 +26,8 @@ import { CanalComponent } from './components/home/canal.component';
     HttpModule
   ],
   providers: [
-    YoutubeService
+    YoutubeService,
+    HomeComponent
   ],
   bootstrap: [AppComponent]
 })
