@@ -67,6 +67,11 @@ export class YoutubeService {
 
   }
 
+  guardarCanales(canales: any[]) {
+    localStorage.removeItem('canales');
+    localStorage.setItem('canales', JSON.stringify(canales));
+  }
+
   seleccionarVideo(video: any) {
     this.videoSel = video;
   }
