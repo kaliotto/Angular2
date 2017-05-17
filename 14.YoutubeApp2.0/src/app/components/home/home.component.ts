@@ -41,11 +41,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  obtenerPlaylists(idUploads: string[]) {
+  obtenerPlaylists(idUploads: string[], nextPageToken?: string) {
     this.playlists = [];
     for (let idUpload of idUploads) {
-      this._yts.obtenerDatosPlaylist(idUpload).subscribe(playList => {
-        let canal = this.mapearCanal(playList);
+      this._yts.obtenerDatosPlaylist(idUpload, nextPageToken).subscribe(playList => {
+        let canal = this.mapearCanal(playList, nextPageToken);
         this.playlists.push(canal);
       });
     }

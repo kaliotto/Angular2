@@ -12,14 +12,16 @@ declare var $: any;
 export class HomeComponent implements OnInit, OnChanges {
 
   canales: string[];
-  constructor(private _YTServ: YoutubeService) {
+
+  constructor(private _YTServ: YoutubeService) { }
+
+  ngOnInit() {
     this.cargarCanales();
   }
 
   cargarCanales() {
     if (localStorage.getItem('canales')) {
       this.canales = JSON.parse(localStorage.getItem('canales'));
-      // this.canales = [];
     } else {
       this.canales = [];
     }
@@ -31,30 +33,8 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.cargarCanales();
+    //this.cargarCanales();
   }
-
-  ngOnInit() { }
-
-  // getVideos(nextPageToken: string) {
-  //   if (nextPageToken) {
-  //     this._YTServ.getVideosAlvarito(nextPageToken).subscribe(paginaAlvarito => {
-  //       console.log(paginaAlvarito);
-  //       this.paginaAlvarito.nextPageToken = paginaAlvarito.nextPageToken;
-  //       this.paginaAlvarito.videos.push.apply(this.paginaAlvarito.videos, paginaAlvarito.videos);
-  //     });
-  //   } else {
-  //     this._YTServ.getVideosAlvarito().subscribe(paginaAlvarito => {
-  //       console.log(paginaAlvarito);
-  //       this.paginaAlvarito = paginaAlvarito;
-  //     });
-  //   }
-  // }
-
-  // verVideo(video: any) {
-  //   this.videoSel = video;
-  //   $('#modalVideo').modal();
-  // }
 
 
 }
